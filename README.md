@@ -4,7 +4,9 @@
 <http://p2.ovlii.me>
 
 ## Description
-This project is to generate a xkcd style password. The program uses
+This project is a simple utility to generate a [xkcd style password]
+(http://xkcd.com/936/). 
+The program uses
 the following :
 
 1. words used from wamerican dictionary. 
@@ -12,7 +14,7 @@ the following :
 3. Based on the user input it would generate a xkcd password. 
 
 ## Demo
-None required for P1.
+<http://www.screencast.com/t/QorC0oGx>
 
 ## Details for teaching team
 No login required.
