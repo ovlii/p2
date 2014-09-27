@@ -5,7 +5,8 @@
 
 ## Description
 This project is to generate a xkcd style password. The program uses
-the following 
+the following :
+
 1. words used from wamerican dictionary. 
 2. HTML form developed to support options for generating passwords.
 3. Based on the user input it would generate a xkcd password. 
