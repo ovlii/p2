@@ -21,6 +21,8 @@ No login required.
 
 
 ## Outside code
-I have used pForm to generate the HTML form used in the project. It is
-by http://www.phpform.org. The stylesheet is used default and some modifcations
-have been done to accomodate the password field and some paddings
+I have used an online HTML Form Creation tool provided by <http://www.phpform.org>
+
+The stylesheet view.css used in this project is from the above website and also the
+html form created was using their template.  I have modified the view.css file by 
+removing fields not used in my project.

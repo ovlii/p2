@@ -2,70 +2,78 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <title>xkcd Password Generator</title>
+      <title>Ovlii's Password Generator</title>
       <link rel="stylesheet" type="text/css" href="view.css" media="all">
       <script type="text/javascript" src="view.js"></script>
+       <?php require('functions.php'); ?>
    </head>
    <body id="main_body" >
       <div id="form_container">
-         <h1><a>Ovlii's - Password Generator</a></h1>
-         <form id="form_907875" class="appnitro"  method="post" 
+         <h1><a>Ovlii's Password Generator</a></h1>
+         <form class="appnitro"  method="post" 
             action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <div class="form_description">
                <h2>Ovlii's - Password Generator</h2>
-               <p>Secure Password generator based on xkcd</p>
+               <p>Secure Password generator </p>
             </div>
             <ul >
-               <li id="li_7" >
-                  <label class="description" for="element_7">Generated Password is  </label>
+               <li>
+                  <label class="description">Generated Password is  </label>
                   <div class="password">
-                     <?php require('functions.php'); ?>
                      <?php echo generate_password(); ?>
                   </div>
                </li>
-               <li id="li_1" >
-                  <label class="description" for="no_of_words">Number of Words </label>
-                  <div>
-                     <input id="no_of_words" name="no_of_words" class="element text small" 
-			type="number" min="1" max="9" maxlength="1" value=""/>
-                     Default (5) 
-                  </div>
-                  <p class="guidelines" id="guide_1"><small>Please select the number of words ( Maximum 9)</small></p>
+               <li>
+		<div>
+		<select class="element select small" id="no_of_words" name="no_of_words"> 
+			<option value="" selected="selected"></option>
+			<option value="1" >1</option>
+			<option value="2" >2</option>
+			<option value="3" >3</option>
+			<option value="4" >4</option>
+			<option value="5" >5</option>
+			<option value="6" >6</option>
+			<option value="7" >7</option>
+			<option value="8" >8</option>
+			<option value="9" >9</option>
+
+		</select>
+		</div> 
+			  <p class="guidelines"><small>Please select the number of words ( Maximum 9)</small></p>
                </li>
-               <li id="li_3" >
+               <li>
                   <span>
                   <input id="add_number" name="add_number" class="element checkbox" type="checkbox" value="1" />
-                  <label class="choice" for="element_3_1">Add Random Number (0-9)</label>
+                  <label class="choice">Add Random Number (0-9)</label>
                   </span>
-                  <p class="guidelines" id="guide_3"><small>Please select this if you want a random number to be added at the end.</small></p>
+                  <p class="guidelines"><small>Please select this if you want a random number to be added at the end.</small></p>
                </li>
-               <li id="li_4" >
+               <li>
                   <span>
                   <input id="add_special" name="add_special" class="element checkbox" type="checkbox" value="1" />
-                  <label class="choice" for="element_4_1">Add special characters</label>
+                  <label class="choice">Add special characters</label>
                   </span>
-                  <p class="guidelines" id="guide_4"><small>Add a special characters at the end of the password.</small></p>
+                  <p class="guidelines"><small>Add a special characters at the end of the password.</small></p>
                </li>
-               <li id="li_2" >
-                  <label class="description" for="element_2">Seperator </label>
+               <li>
+                  <label class="description">Seperator </label>
                   <div>
                      <input id="add_seperator" name="add_seperator" class="element text small" type="text" maxlength="1" value=""/> 
                   </div>
-                  <p class="guidelines" id="guide_2"><small>Please select the separator to be used between the words for the password.</small></p>
+                  <p class="guidelines"><small>Please select the separator to be used between the words for the password.</small></p>
                </li>
-               <li id="li_8" >
-                  <label class="description" for="element_8">First Upper/All Upper </label>
+               <li>
+                  <label class="description">First Upper/All Upper </label>
                   <span>
                   <input id="make_first_upper" name="make_first_upper" class="element radio" type="radio" value="1" />
-                  <label class="choice" for="element_8_1">First Letter Upper</label>
+                  <label class="choice">First Letter Upper</label>
                   <input id="make_all_upper" name="make_all_upper" class="element radio" type="radio" value="1" />
-                  <label class="choice" for="element_8_2">All Word Upper</label>
+                  <label class="choice">All Word Upper</label>
                   </span>
-                  <p class="guidelines" id="guide_8"><small>Select if First letter of word upper or all the word to be upper.</small></p>
+                  <p class="guidelines"><small>Select if First letter of word upper or all the word to be upper.</small></p>
                </li>
                <li class="buttons">
-                  <input type="hidden" name="form_id" value="907875" />
-                  <input id="saveForm" class="button_text" type="submit" name="submit" value="Gimme Another One!" />
+                  <input id="saveForm" class="button_text" type="submit" name="submit" value="Generate Password!" />
                </li>
             </ul>
          </form>
@@ -81,6 +89,5 @@
             Generated by <a href="http://www.phpform.org">pForm</a>
          </div>
       </div>
-      <img id="bottom" src="bottom.png" alt="">
    </body>
 </html>

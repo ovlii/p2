@@ -48,30 +48,22 @@ function check_input_values() {
   // Get form values when POST and assign to GLOBAL variables.
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
-      $no_of_words = $_POST["no_of_words"];    
-
       if ( !empty($no_of_words) ){         
-      	$GLOBALS['no_of_words'] = $no_of_words;
+      	$GLOBALS['no_of_words'] = $_POST["no_of_words"]; 
       }
       
-      $add_number = $_POST["add_number"];
-      $GLOBALS['add_number'] = $add_number;
+      $GLOBALS['add_number'] = $_POST["add_number"];
       
-      $add_special = $_POST["add_special"];	      
-      $GLOBALS['add_special'] = $add_special;
+      $GLOBALS['add_special'] = $_POST["add_special"];	
       
-      $make_first_upper = $_POST["make_first_upper"];     
-	  $GLOBALS['make_first_upper'] = $make_first_upper;
-      
-      $add_seperator = $_POST["add_seperator"];   
+	  $GLOBALS['make_first_upper'] = $_POST["make_first_upper"]; 
       
       // if the seperator value is not empty      
       if ( !empty($add_seperator) ){         
-      	$GLOBALS['add_seperator'] = $add_seperator;
+      	$GLOBALS['add_seperator'] = $_POST["add_seperator"]; 
       }
       
-      $make_all_upper = $_POST['make_all_upper'];
-      $GLOBALS['make_all_upper'] = $make_all_upper;
+      $GLOBALS['make_all_upper'] = $_POST['make_all_upper'];
       
    }
 
@@ -91,7 +83,6 @@ function generate_password() {
 	$add_seperator = $GLOBALS['add_seperator'];
 	$make_all_upper = $GLOBALS['make_all_upper'];
 	
-	
 	// getting dictionary words into an array.
 	$get_words = file('/usr/share/dict/words', FILE_IGNORE_NEW_LINES);
 
@@ -102,32 +93,20 @@ function generate_password() {
 		
 		$random_words = rand(0,$length);
 		
-		if ( $password == '' ) {
 
 			// This is to make the first letter upper case.
 			if ( $make_first_upper == 1 ) {
-				$password = ucwords($get_words[$random_words]); 
+			   $password = ( $password == '' ? ucwords($get_words[$random_words])  : 
+			   							  $password . $add_seperator . ucwords($get_words[$random_words])  ) ;
 			} else if ( $make_all_upper == 1 ) {
-				$password = strtoupper($get_words[$random_words]); 
-			} else {
-				$password = $get_words[$random_words];
-			}			
-	
-			
-		} else {
-			if ( $make_first_upper == 1 ) {
-				$password = $password . $add_seperator . ucwords($get_words[$random_words]);
-			} else if ( $make_all_upper == 1 ) {
-				$password = $password . $add_seperator . strtoupper($get_words[$random_words]);
-			} else {
-				$password = $password . $add_seperator . $get_words[$random_words];
-			}
-			
-		}
-		
+				$password = ( $password == '' ?  strtoupper($get_words[$random_words])  :
+										   $password . $add_seperator . strtoupper($get_words[$random_words]) ); 
+			} else {			
+				$password = ( $password == '' ? $get_words[$random_words] : 
+										   $password . $add_seperator . $get_words[$random_words] );
+			}		
 	}
-	
-	return $password . add_number($add_number) . add_special($add_special);
+        return $password . add_number($add_number) . add_special($add_special);	
 }
 
 ?>
