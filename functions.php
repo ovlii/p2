@@ -48,20 +48,19 @@ function check_input_values() {
   // Get form values when POST and assign to GLOBAL variables.
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
-      if ( !empty($no_of_words) ){         
-      	$GLOBALS['no_of_words'] = $_POST["no_of_words"]; 
-      }
-      
+      // if the no_of_words is empty use default value.        
+      $GLOBALS['no_of_words'] = !empty($_POST["no_of_words"]) ? $_POST["no_of_words"] :
+      							$GLOBALS['no_of_words'];
+      							      
       $GLOBALS['add_number'] = $_POST["add_number"];
       
       $GLOBALS['add_special'] = $_POST["add_special"];	
       
 	  $GLOBALS['make_first_upper'] = $_POST["make_first_upper"]; 
       
-      // if the seperator value is not empty      
-      if ( !empty($add_seperator) ){         
-      	$GLOBALS['add_seperator'] = $_POST["add_seperator"]; 
-      }
+      // if the seperator is empty use default value.        
+      $GLOBALS['add_seperator'] = !empty($_POST["add_seperator"])  ? $_POST["add_seperator"] :
+      							  $GLOBALS['add_seperator'];
       
       $GLOBALS['make_all_upper'] = $_POST['make_all_upper'];
       
