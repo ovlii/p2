@@ -8,12 +8,11 @@
 
 function set_global_values() {
   // Initialize the global variables with defaults  
-  $GLOBALS['no_of_words'] = '5';
+  $GLOBALS['no_of_words'] = '3';
   $GLOBALS['add_number'] = '0';
   $GLOBALS['add_special'] = '0';
-  $GLOBALS['make_first_upper'] = '0';
   $GLOBALS['add_seperator'] = '-';
-  $GLOBALS['make_all_upper'] = '0';
+  $GLOBALS['make_upper'] = '0';
 }
 
 // Function to get a random number between 0 and 9 to add to the password.
@@ -26,9 +25,6 @@ function add_number($add_number) {
 
 // Function to get special characters generated randomly.
 function add_special($add_special) {
-	// TODO 
-	// getting special characters between ascii 33 and 126
-	// excluding alphabets and numbers.
 	
 	if ( $add_special == 1 ) {
 		$special = rand(33,47);	
@@ -56,13 +52,11 @@ function check_input_values() {
       
       $GLOBALS['add_special'] = $_POST["add_special"];	
       
-	  $GLOBALS['make_first_upper'] = $_POST["make_first_upper"]; 
-      
       // if the seperator is empty use default value.        
       $GLOBALS['add_seperator'] = !empty($_POST["add_seperator"])  ? $_POST["add_seperator"] :
       							  $GLOBALS['add_seperator'];
       
-      $GLOBALS['make_all_upper'] = $_POST['make_all_upper'];
+      $GLOBALS['make_upper'] = $_POST['make_upper'];
       
    }
 
@@ -78,9 +72,8 @@ function generate_password() {
 	$no_of_words = $GLOBALS['no_of_words'];
 	$add_number = $GLOBALS['add_number'];
 	$add_special = $GLOBALS['add_special'];
-	$make_first_upper = $GLOBALS['make_first_upper'];
 	$add_seperator = $GLOBALS['add_seperator'];
-	$make_all_upper = $GLOBALS['make_all_upper'];
+	$make_upper = $GLOBALS['make_upper'];
 	
 	// getting dictionary words into an array.
 	$get_words = file('/usr/share/dict/words', FILE_IGNORE_NEW_LINES);
@@ -94,10 +87,10 @@ function generate_password() {
 		
 
 			// This is to make the first letter upper case.
-			if ( $make_first_upper == 1 ) {
+			if ( $make_upper == 0 ) {
 			   $password = ( $password == '' ? ucwords($get_words[$random_words])  : 
 			   							  $password . $add_seperator . ucwords($get_words[$random_words])  ) ;
-			} else if ( $make_all_upper == 1 ) {
+			} else if ( $make_upper == 1 ) {
 				$password = ( $password == '' ?  strtoupper($get_words[$random_words])  :
 										   $password . $add_seperator . strtoupper($get_words[$random_words]) ); 
 			} else {			
@@ -105,7 +98,7 @@ function generate_password() {
 										   $password . $add_seperator . $get_words[$random_words] );
 			}		
 	}
-        return $password . add_number($add_number) . add_special($add_special);	
+        return trim($password . add_number($add_number) . add_special($add_special));	
 }
 
 ?>
