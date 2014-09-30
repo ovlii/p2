@@ -47,7 +47,11 @@ function check_input_values() {
       // if the no_of_words is empty use default value.        
       $GLOBALS['no_of_words'] = !empty($_POST["no_of_words"]) ? $_POST["no_of_words"] :
       							$GLOBALS['no_of_words'];
+ 
+      // Check for the words to be between 1 and 9. If a hack on the form, this will be default to 3.
       							      
+      $GLOBALS['no_of_words'] = ($_POST["no_of_words"] >= 1 && $_POST["no_of_words"] <= 9 ) ? $_POST["no_of_words"] : $GLOBALS['no_of_words']; 
+
       $GLOBALS['add_number'] = $_POST["add_number"];
       
       $GLOBALS['add_special'] = $_POST["add_special"];	
